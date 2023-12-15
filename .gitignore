@@ -1,0 +1,8 @@
+# Wally Packages
+/Packages
+
+# Lock files
+/*.lock
+
+# Sourcemap
+/sourcemap.json
