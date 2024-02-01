@@ -25,6 +25,7 @@ function RandomOption.new<drop>(dropRates: dropRates<drop>?)
             if rate then table.remove(linearRates, index) end
             info.rate -= rate
         end
+        return self
     end
     function self:add(rate: number,...: drop)
         
@@ -50,10 +51,11 @@ function RandomOption.new<drop>(dropRates: dropRates<drop>?)
     for value, rate in pairs(dropRates or {}) do self:add(rate, value) end
     
     --// End
-    return self :: RandomOption<drop>
+    return (self :: any) :: RandomOption<drop>
 end
 export type RandomOption<drop = any> = {
     add: (any, rate: number, value: drop) -> RandomOption<drop>,
+    remove: (value: drop, rate: number?) -> RandomOption<drop>,
     choice: (any) -> drop,
 }
 
