@@ -27,6 +27,7 @@ function RandomOption.new<drop>(_dropRates: dropRates<drop>?)
             if rate then table.remove(linearRates, index) end
             info.rate -= rate
         end
+        dropRates[value] -= rate
         return self
     end
     function self:add(rate: number,...: drop)
@@ -34,6 +35,7 @@ function RandomOption.new<drop>(_dropRates: dropRates<drop>?)
         for _,value in {...} do
             
             totalRate += rate
+            dropRates[value] = rate + (dropRates[value] or 0)
             table.insert(linearRates, { value = value, maxRate = totalRate })
         end
         return self
