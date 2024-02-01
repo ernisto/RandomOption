@@ -51,6 +51,35 @@ function RandomOption.new<drop>(_dropRates: dropRates<drop>?)
         error('want possible choice')
     end
     
+    function self:getRarestDrops(amount: number)
+        
+        local drops = {}
+        
+        for _ = 1, amount do
+            
+            local lowestRate = math.huge
+            local rarestDrop
+            
+            for drop, rate in dropRates do
+                
+                if table.find(drops, drop) then continue end
+                if rate > lowestRate then continue end
+                
+                lowestRate = rate
+                rarestDrop = drop
+            end
+            table.insert(drops, rarestDrop)
+        end
+        return unpack(drops)
+    end
+    function self:getWithLuck(multiplier: number,...: drop)
+        
+        local buffedRates = table.clone(dropRates)
+        for _,drop in {...} do buffedRates[drop] *= multiplier end
+        
+        return RandomOption.new(buffedRates)
+    end
+    
     --// Setup
     for value, rate in pairs(dropRates or {}) do self:add(rate, value) end
     
