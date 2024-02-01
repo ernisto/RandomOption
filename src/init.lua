@@ -5,7 +5,9 @@ local RandomOption = {}
 type dropRates<drop = any> = { [drop]: number }
 
 --// Module Functions
-function RandomOption.new<drop>(dropRates: dropRates<drop>?)
+function RandomOption.new<drop>(_dropRates: dropRates<drop>?)
+    
+    local dropRates = if _dropRates then table.clone(_dropRates) else {}
     
     --// Instance
     local linearRates = {}
