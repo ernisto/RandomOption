@@ -80,6 +80,11 @@ function RandomOption.new<drop>(_dropRates: dropRates<drop>?)
         return RandomOption.new(buffedRates)
     end
     
+    function self:clone()
+        
+        return RandomOption.new(table.clone(dropRates))
+    end
+    
     --// Setup
     for value, rate in pairs(dropRates or {}) do self:add(rate, value) end
     
