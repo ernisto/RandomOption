@@ -17,17 +17,17 @@ function RandomOption.new<drop>(_dropRates: dropRates<drop>?)
     --// Methods
     function self:remove(value: drop, rate: number?)
         
+        rate = rate or dropRates[value]
         local rightSide = false
         
-        for index, info in linearRates do
+        for _,info in linearRates do
             
             if not rightSide and info.value ~= value then continue end
             rightSide = true
             
-            if rate then table.remove(linearRates, index) end
-            info.rate -= rate
+            info.maxRate -= rate
         end
-        dropRates[value] -= rate
+        if rate then dropRates[value] -= rate else dropRates[value] = nil end
         return self
     end
     function self:add(rate: number,...: drop)
