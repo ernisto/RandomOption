@@ -93,11 +93,11 @@ function RandomOption.new<drop>(_dropRates: dropRates<drop>?)
 end
 export type RandomOption<drop = any> = {
     add: (any, rate: number, value: drop) -> RandomOption<drop>,
-    remove: (value: drop, rate: number?) -> RandomOption<drop>,
+    remove: (any, value: drop, rate: number?) -> RandomOption<drop>,
     choice: (any) -> drop,
     
-    getRarestDrops: (amount: number) -> ...drop,
-    getWithLuck: (multiplier: number,...drop) -> RandomOption<drop>,
+    getRarestDrops: (any, amount: number) -> ...drop,
+    getWithLuck: (any, multiplier: number,...drop) -> RandomOption<drop>,
 }
 
 --// End
