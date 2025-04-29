@@ -1,0 +1,4 @@
+collapse_simple_statement = 'ConditionalOnly'
+call_parentheses = 'Input'
+quote_style = 'AutoPreferSingle'
+line_endings = 'Unix'

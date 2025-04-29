@@ -1,8 +1,9 @@
-# Wally Packages
-/Packages
+# local secrets
+.env
 
-# Lock files
-/*.lock
+# locally generated
+dist
+.pesde
 
-# Sourcemap
-/sourcemap.json
+# packages
+luau_packages
