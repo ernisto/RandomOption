@@ -1,4 +1,6 @@
 {
-  "name": "random-option",
-  "tree": { "$path": "src" }
+    "name": "rng",
+    "tree": {
+        "$path": "lib"
+    }
 }
