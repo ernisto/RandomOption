@@ -1,0 +1,65 @@
+name: Check
+
+concurrency:
+  group: check-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  workflow_dispatch:
+  workflow_call:
+  pull_request:
+    branches-ignore: [master, dev]
+  push:
+    branches-ignore: [master, dev]
+
+jobs:
+  check-format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your Git repo
+        uses: actions/checkout@v2
+
+      - name: Check Format
+        uses: JohnnyMorganz/stylua-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: 2.1.0
+          args: --config-path stylua.toml --check lib tests
+
+  lint-code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your git repo
+        uses: actions/checkout@v2
+
+      - name: Setup pesde
+        uses: ernisto/setup-pesde@main  # temp until my pr get merged
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          cache: true
+
+      - name: Install packages
+        run: pesde install
+        timeout-minutes: 1
+
+      - name: Lint
+        run: >
+          luau_lsp analyze
+          --base-luaurc .luaurc
+          --ignore **/luau_packages/**
+          lib tests
+
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your Git repo
+        uses: actions/checkout@v2
+
+      - name: Setup Pesde Tools
+        uses: ernisto/setup-pesde@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          cache: true
+
+      - name: Run tests
+        run: lune run tests/run
