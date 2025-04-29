@@ -24,7 +24,10 @@ function RandomOption.new<drop>(_dropRates: dropRates<drop>?)
             rightSide = true
             info.maxRate -= rate
         end
-        if rate then dropRates[value] -= rate else dropRates[value] = nil end
+        if rate then
+            dropRates[value] -= rate
+            totalRate -= rate
+        end
         return self
     end
     function self:add(rate: number, ...: drop)
