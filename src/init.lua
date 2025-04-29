@@ -39,11 +39,10 @@ function RandomOption.new<drop>(_dropRates: dropRates<drop>?)
         return self
     end
     function self:choice(): drop
-        
-        local rate = math.random(1, totalRate)
-        
-        for _,drop in linearRates do
-            
+        assert(self:isAvailable(), `totalRate: {totalRate} must to be > 0`)
+        local rate = math.random() * totalRate
+
+        for _, drop in linearRates do
             if rate <= drop.maxRate then return drop.value end
         end
         error('want possible choice')
@@ -75,9 +74,11 @@ function RandomOption.new<drop>(_dropRates: dropRates<drop>?)
 
         return RandomOption.new(buffedRates)
     end
-    
+
+    function self:isAvailable()
+        return totalRate > 0
+    end
     function self:clone()
-        
         return RandomOption.new(table.clone(dropRates))
     end
 
@@ -96,6 +97,8 @@ export type RandomOption<drop = any> = {
 
     getRarestDrops: (any, amount: number) -> ...drop,
     getWithLuck: (any, multiplier: number, ...drop) -> RandomOption<drop>,
+
+    isAvailable: (any) -> boolean,
     clone: (any) -> RandomOption<drop>,
 }
 
