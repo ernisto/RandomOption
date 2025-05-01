@@ -10,26 +10,27 @@
     // files
     "files.eol": "\n",
     "files.readonlyInclude": {
-        "luau_packages/**": true,
-        "pesde.lock": true,
-        ".pesde": true,
+        "*_packages/**": true,
+        ".pesde/**": true,
+
+        "sourcemap.json": true,
         "dist": true,
+
+        "*.lock": true,
+        "*.lock.*": false,
     },
     "files.exclude": {
-        ".vscode": false,
-        ".github": false,
-        ".pesde": false,
-        "pesde.lock": false,
-        "sourcemap.json": false,
-        "luau_packages": false,
-        "scripts": false,
-        "dist": false,
-        ".gitattributes": false,
-        ".gitignore": false,
-        ".luaurc": false,
-        "stylua.toml": false,
-        "pesde.toml": false,
-        "*.lock.toml": false
+        "stylua.toml": true,
+        "pesde.toml": true,
+        "*_packages": true,
+        ".gitattributes": true,
+        ".gitignore": true,
+        ".github": true,
+        ".vscode": true,
+        ".luaurc": true,
+        ".pesde": true,
+        "*.lock": true,
+        "*.lock.*": true
     },
 
     // luau lsp
@@ -43,8 +44,7 @@
     "luau-lsp.fflags.enableNewSolver": false,
     "luau-lsp.diagnostics.workspace": true,
     "luau-lsp.ignoreGlobs": [
-        "lune_packages/**",
-        "**/.pesde/**",
+        "*_packages/**",
         "dist/**"
     ],
     "luau-lsp.completion.imports.ignoreGlobs": [

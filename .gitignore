@@ -1,9 +1,6 @@
-# local secrets
-.env
-
-# locally generated
-dist
+# pesde
+*_packages
 .pesde
 
-# packages
-luau_packages
+# local secrets
+.env
