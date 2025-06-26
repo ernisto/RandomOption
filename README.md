@@ -7,7 +7,7 @@ RandomOption = "ernisto/random-option@0.2.1"
 ```
 Or with pesde, just run in your terminal
 ```sh
-pesde add = "ernisto/random_option@0.2.1"
+pesde add ernisto/random_option
 ```
 
 ## Usage

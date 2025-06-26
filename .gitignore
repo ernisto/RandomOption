@@ -4,3 +4,6 @@
 
 # local secrets
 .env
+
+# rojo generated
+sourcemap.json

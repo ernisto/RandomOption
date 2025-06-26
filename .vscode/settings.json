@@ -21,7 +21,6 @@
     },
     "files.exclude": {
         "stylua.toml": true,
-        "pesde.toml": true,
         "*_packages": true,
         ".gitattributes": true,
         ".gitignore": true,

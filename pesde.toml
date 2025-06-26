@@ -1,5 +1,5 @@
 name = "ernisto/random_option"
-version = "0.2.1"
+version = "0.2.2"
 description = "a rng utility"
 authors = [
     "ernisto <joaovitordesouza707@gmail.com>"
@@ -18,10 +18,11 @@ includes = [
 [target]
 environment = "roblox"
 lib = "lib/init.luau"
+build_files = ["lib"]
 # bin = "cli/init.luau"
 
 [engines]
-pesde = "^0.6.0"
+pesde = "^0.7.0-rc.6"
 lune = "^0.8.9"
 
 [indices]
